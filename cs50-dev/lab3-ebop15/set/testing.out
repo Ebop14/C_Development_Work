@@ -1,0 +1,36 @@
+gcc -Wall -pedantic -std=c11 -ggdb -DMEMTEST -I../lib   -c -o set.o set.c
+gcc -Wall -pedantic -std=c11 -ggdb -DMEMTEST -I../lib settest.o set.o ../lib/file.o ../lib/mem.o  -o settest
+./settest < settest.names
+Create first set...
+
+Test with null set, good key, good item...
+test with good key, null item...
+test with good set, null key, good item...
+test with null set, null key, null item...
+
+Count 1 (should be zero): 0
+
+Testing set_insert...
+
+Testing set_find...
+
+Good set, bad key
+
+Null set, good key
+
+Good set, Null key
+Good set, good keyworking
+key1 maps to Ethan
+Testing duplicate key insert
+key in use
+Count (should be 3): 3
+
+The set:
+{"key3" ==> "John","key2" ==> "Bob","key1" ==> "Ethan",}
+
+The set:
+Count (should be 3): 3
+{"key3" ==> "John","key2" ==> "Bob","key1" ==> "Ethan",}
+
+delete the set...
+End of set_delete: 9 malloc, 4 free, 0 free(NULL), 5 net

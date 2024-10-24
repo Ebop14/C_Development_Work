@@ -1,0 +1,57 @@
+ml () {  module ml "$@"
+}
+module () {  _module_raw "$@" 2>&1
+}
+_module_raw () {  eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash "$@"`;
+ _mlstatus=$?;
+ return $_mlstatus
+}
+# no arguments
+./chill
+Temp    Wind    Chill
+----    ----    ----
+-10.0    5.0    -22.2 
+-10.0    10.0    -28.3 
+-10.0    15.0    -32.2 
+0.0    5.0    -10.5 
+0.0    10.0    -15.9 
+0.0    15.0    -19.4 
+10.0    5.0    1.2 
+10.0    10.0    -3.6 
+10.0    15.0    -6.6 
+20.0    5.0    12.9 
+20.0    10.0    8.8 
+20.0    15.0    6.2 
+30.0    5.0    24.7 
+30.0    10.0    21.2 
+30.0    15.0    19.0 
+# one argument, in range
+./chill 32
+Temp    Wind    Chill
+----    ----    ----
+32.0    5.0    27.0 
+32.0    10.0    23.7 
+32.0    15.0    21.5 
+# one argument, above range
+./chill 1001
+Please specify a temperature between -99 and 50
+# one argument, below range
+./chill -1000
+Please specify a temperature between -99 and 50
+# two arguments
+./chill 32 10
+Temp    Wind    Chill
+----    ----    ----
+32.0  10.0  23.7
+# two arguments, temp above range
+./chill 1000 5
+Please specify a temperature between -99 and 50
+# two arguments, temp below range
+./chill -500 5
+Please specify a temperature between -99 and 50
+# two arguments, wind below range
+./chill 32 -100
+Please specify a velocity between 0.5 and 231
+# two arguments, wind above range
+./chill 32 1000
+Please specify a velocity between 0.5 and 231

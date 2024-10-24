@@ -1,0 +1,117 @@
+ml () {  module ml "$@"
+}
+module () {  _module_raw "$@" 2>&1
+}
+_module_raw () {  eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash "$@"`;
+ _mlstatus=$?;
+ return $_mlstatus
+}
+# testing echo
+echo {1..16} 150 | ./histo
+16 bins of size 1 for range [0: 16] 
+16 bins of size 2 for range [0: 32] 
+16 bins of size 4 for range [0: 64] 
+16 bins of size 8 for range [0: 128] 
+16 bins of size 16 for range [0: 256] 
+Bin for range [0: 15]: *************** 
+Bin for range [16: 31]: * 
+Bin for range [32: 47]:  
+Bin for range [48: 63]:  
+Bin for range [64: 79]:  
+Bin for range [80: 95]:  
+Bin for range [96: 111]:  
+Bin for range [112: 127]:  
+Bin for range [128: 143]:  
+Bin for range [144: 159]: * 
+Bin for range [160: 175]:  
+Bin for range [176: 191]:  
+Bin for range [192: 207]:  
+Bin for range [208: 223]:  
+Bin for range [224: 239]:  
+Bin for range [240: 255]:  
+# negative numbers
+echo -5 23 | ./histo
+16 bins of size 1 for range [0: 16] 
+16 bins of size 2 for range [0: 32] 
+Bin for range [0: 1]:  
+Bin for range [2: 3]:  
+Bin for range [4: 5]:  
+Bin for range [6: 7]:  
+Bin for range [8: 9]:  
+Bin for range [10: 11]:  
+Bin for range [12: 13]:  
+Bin for range [14: 15]:  
+Bin for range [16: 17]:  
+Bin for range [18: 19]:  
+Bin for range [20: 21]:  
+Bin for range [22: 23]: * 
+Bin for range [24: 25]:  
+Bin for range [26: 27]:  
+Bin for range [28: 29]:  
+Bin for range [30: 31]:  
+# up to 128
+echo 128 | ./histo
+16 bins of size 1 for range [0: 16] 
+16 bins of size 2 for range [0: 32] 
+16 bins of size 4 for range [0: 64] 
+16 bins of size 8 for range [0: 128] 
+16 bins of size 16 for range [0: 256] 
+Bin for range [0: 15]:  
+Bin for range [16: 31]:  
+Bin for range [32: 47]:  
+Bin for range [48: 63]:  
+Bin for range [64: 79]:  
+Bin for range [80: 95]:  
+Bin for range [96: 111]:  
+Bin for range [112: 127]:  
+Bin for range [128: 143]: * 
+Bin for range [144: 159]:  
+Bin for range [160: 175]:  
+Bin for range [176: 191]:  
+Bin for range [192: 207]:  
+Bin for range [208: 223]:  
+Bin for range [224: 239]:  
+Bin for range [240: 255]:  
+# testing expanding range
+echo 1 2 4 8 16 32 64 128 256 | ./histo
+16 bins of size 1 for range [0: 16] 
+16 bins of size 2 for range [0: 32] 
+16 bins of size 4 for range [0: 64] 
+16 bins of size 8 for range [0: 128] 
+16 bins of size 16 for range [0: 256] 
+16 bins of size 32 for range [0: 512] 
+Bin for range [0: 31]: ***** 
+Bin for range [32: 63]: * 
+Bin for range [64: 95]: * 
+Bin for range [96: 127]:  
+Bin for range [128: 159]: * 
+Bin for range [160: 191]:  
+Bin for range [192: 223]:  
+Bin for range [224: 255]:  
+Bin for range [256: 287]: * 
+Bin for range [288: 319]:  
+Bin for range [320: 351]:  
+Bin for range [352: 383]:  
+Bin for range [384: 415]:  
+Bin for range [416: 447]:  
+Bin for range [448: 479]:  
+Bin for range [480: 511]:  
+# testing 0
+echo 0 1 2 3 | ./histo
+16 bins of size 1 for range [0: 16] 
+Bin for range [0: 0]: * 
+Bin for range [1: 1]: * 
+Bin for range [2: 2]: * 
+Bin for range [3: 3]: * 
+Bin for range [4: 4]:  
+Bin for range [5: 5]:  
+Bin for range [6: 6]:  
+Bin for range [7: 7]:  
+Bin for range [8: 8]:  
+Bin for range [9: 9]:  
+Bin for range [10: 10]:  
+Bin for range [11: 11]:  
+Bin for range [12: 12]:  
+Bin for range [13: 13]:  
+Bin for range [14: 14]:  
+Bin for range [15: 15]:  

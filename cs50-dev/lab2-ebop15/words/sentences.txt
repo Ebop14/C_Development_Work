@@ -1,0 +1,6 @@
+Hello! This is Ethan's test script.
+123 456 789 10
+The quick brown dog jumps over the lazy dog
+!@ #$ %^ &* ()
+;" '; 
+do those count as words?

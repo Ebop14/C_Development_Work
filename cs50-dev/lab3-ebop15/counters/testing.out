@@ -1,0 +1,57 @@
+gcc -Wall -pedantic -std=c11 -ggdb -DMEMTEST -I../lib   -c -o counterstest.o counterstest.c
+gcc -Wall -pedantic -std=c11 -ggdb -DMEMTEST -I../lib counterstest.o counters.o ../lib/file.o ../lib/mem.o  -o counterstest
+./counterstest < counterstest.names
+Create first counter...
+
+Number of keys (should be zero): 
+Testing counters_add with unique keys...
+
+Count (should be 7): 
+The counter:
+{7=1,6=1,5=1,4=1,3=1,2=1,1=1,}
+
+Adding a duplicate to the counter
+key in usekey in usekey in usekey in use
+The new counter:
+{7=1,6=1,5=1,4=1,3=1,2=2,1=4,}
+Testing NULL counter print
+(null)
+Testing NULL file print
+
+Testing counters_get
+
+The count for key 1: 4, should be 4 
+
+The count for key 2: 2, should be 2
+
+The count for key 2: 2, should be 1
+Testing bad counter
+0
+Testing counters_set
+counter set
+Success
+{7=1,6=1,5=1,4=1,3=1,2=2,1=50,}
+Testing counters_set with NULL counter
+
+Success
+
+Testing counters_set with bad count
+
+Success
+
+Testing counters_set with bad count
+
+Success
+
+Testing counters_set with nonexistent key
+
+counter doesn't exist yet. Creating one now. 
+{17=1,7=1,6=1,5=1,4=1,3=1,2=2,1=50,}
+The current keycount: 8
+
+Test counter_iterate, NULL counter
+
+Count should be, 8, the count is: 8
+
+delete the counter...
+End of counters_delete: 9 malloc, 9 free, 0 free(NULL), 0 net

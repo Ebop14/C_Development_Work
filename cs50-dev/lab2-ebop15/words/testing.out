@@ -1,0 +1,131 @@
+ml () {  module ml "$@"
+}
+module () {  _module_raw "$@" 2>&1
+}
+_module_raw () {  eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash "$@"`;
+ _mlstatus=$?;
+ return $_mlstatus
+}
+# testing input with prompt from the user
+./words
+hello
+this
+is
+the
+first
+test
+
+# testing file opening
+./words sentences.txt
+Hello
+This
+is
+Ethan
+s
+test
+script
+The
+quick
+brown
+dog
+jumps
+over
+the
+lazy
+dog
+do
+those
+count
+as
+words
+
+# testing with bad file
+./words 123
+could not open file! 
+
+# testing with -
+./words -
+hello
+this
+is
+the
+second
+test
+
+# testing with -, then file
+./words - sentences.txt
+hello
+this
+is
+the
+third
+test
+Hello
+This
+is
+Ethan
+s
+test
+script
+The
+quick
+brown
+dog
+jumps
+over
+the
+lazy
+dog
+do
+those
+count
+as
+words
+
+# testing with file, then -
+./words sentences.txt -
+Hello
+This
+is
+Ethan
+s
+test
+script
+The
+quick
+brown
+dog
+jumps
+over
+the
+lazy
+dog
+do
+those
+count
+as
+words
+hello
+this
+is
+the
+fourth
+test
+
+# testing with echo
+echo Hello there! This is my lab submission. I deleted my file in git last time | ./words
+Hello
+there
+This
+is
+my
+lab
+submission
+I
+deleted
+my
+file
+in
+git
+last
+time
