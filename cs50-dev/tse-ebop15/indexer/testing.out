@@ -1,0 +1,33 @@
+ml () {  module ml "$@"
+}
+module () {  _module_raw "$@" 2>&1
+}
+_module_raw () {  eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash "$@"`;
+ _mlstatus=$?;
+ return $_mlstatus
+}
+#!/bin/bash
+
+# one argument
+./indexer
+
+# bad pagedir
+./indexer NULL ../data/letters.index
+
+pageDirectory does not have a /.crawler file, and was thus not written by crawler
+
+
+# new index
+-rm ../data/abc
+testing.sh: line 11: -rm: command not found
+
+./indexer ../data/letters-22 ../data/abc
+
+# good arguments
+./indexer ../data/letters-22 ../data/writeTo
+
+# call on toScrape
+./indexer ../data/toscrape-1 ../data/scrapeWrite
+
+# call on wikipedia
+./indexer ../data/wikipedia-2 ../data/wikiWrite

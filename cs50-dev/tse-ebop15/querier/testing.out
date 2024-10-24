@@ -1,0 +1,19 @@
+ml () {  module ml "$@"
+}
+module () {  _module_raw "$@" 2>&1
+}
+_module_raw () {  eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash "$@"`;
+ _mlstatus=$?;
+ return $_mlstatus
+}
+#!/bin/bash
+
+# one parameter
+./querier
+
+wrong number of arguments
+
+# bad parameters
+./querier ../data/letters-22 BAD
+
+./querier BAD ../data/toWrite
