@@ -1,0 +1,5 @@
+## README file for communications module
+    This module handles all communications for the server side of nuggets. It receives one of three messages at a time; "PLAY [name]" that indicates a new player wants to join, "SPECTATE" that indicates a new spectator wants to watch, and "KEY [keystroke]" that indicates a player or spectator would like to make an action. It responds with one of six messages; "OK [letter]" which indicates a player has been added, "GRID [r] [c]" which indicates the size of the map grid, "GOLD [n] [p] [r]" which indicates the receiver's number of gold aquired, size of their purse, and remaining gold in the grid, "DISPLAY\n[grid]" which sends the map, "QUIT [reason]" which tells the receiver they have quit, and "ERROR [reason]" which indictaes there is an error.
+
+## Functions: 
+bool communications_listen(gamestate_t* game); - instigates the loop that listens for messages from the receiver. Continues to run until the game is over.
