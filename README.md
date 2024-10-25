@@ -1,1 +1,1 @@
-# COSC 50
+This is some of my work in C. The work here includes a few labs (including building data structures, simple C programs, and parts of a search engine) and a final project consisting of a top-down game that can handle multiple players and client-server interaction. 
